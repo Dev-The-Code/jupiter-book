@@ -32,7 +32,7 @@ const Step1 = ({
             btn?.click();
           }}
         >
-          Later
+          Now
         </Button>
         <Button
           className={styles["step__btns-item"]}
@@ -47,7 +47,7 @@ const Step1 = ({
             });
           }}
         >
-          Click
+          Later
         </Button>
       </div>
 
