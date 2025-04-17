@@ -1,6 +1,6 @@
 import moment from "moment";
 import { CarRequestBody, CarType } from "../interfaces/car";
-import { Form } from "../modules/Home/Book";
+import { Form } from "../Book";
 
 export const getBookingRequestBody = (
   form: Form,
@@ -27,7 +27,7 @@ export const getBookingRequestBody = (
     pri_code: "225",
     pri_code_label: "+1",
     pri_tel: form.phone ?? "1111111111",
-    reservation: date && date.unix() !== 0 ? 1 : 0,    
+    reservation: date && date.unix() !== 0 ? 1 : 0,
     sec_code: "225",
     sec_code_label: "+1",
     sec_tel: "",
@@ -35,8 +35,8 @@ export const getBookingRequestBody = (
     trip_type: "tt_o",
     voucher_no: "",
     date: date.format("YYYY-MM-DD"),
-    date_hr: form.hour as string ?? "",
-    date_min: form.minute as string ?? "",
+    date_hr: (form.hour as string) ?? "",
+    date_min: (form.minute as string) ?? "",
     date_mer: form.dayTime ?? "",
     dest_address: form.to?.description ?? "",
     dest_address_id: form.to?.place_id ?? "",
