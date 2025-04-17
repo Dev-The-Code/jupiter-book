@@ -11,7 +11,8 @@ const ArrowSvg = (props: SVGProps<SVGSVGElement>) => {
       {...props}
     >
       <path
-        d="M1 1L8 8L15 1"
+        // d="M1 1L8 8L15 1"
+        d="M1 8L8 1L15 8"
         stroke="black"
         strokeOpacity="0.4"
         strokeWidth="1.5"
