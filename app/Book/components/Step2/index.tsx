@@ -50,6 +50,13 @@ const Step2 = ({
           setActive={(value) => updateForm({ pass_number: value })}
         />
         <Select
+          className={classNames(styles["step__selects-item"])}
+          list={meetList}
+          active={form.meet}
+          placeholder="Luggage"
+          setActive={(value) => updateForm({ meet: value })}
+        />
+        <Select
           className={classNames(styles["step__selects-item"], styles.sm)}
           list={petList}
           active={form.pet}
@@ -63,13 +70,13 @@ const Step2 = ({
           placeholder="Carseat"
           setActive={(value) => updateForm({ carseat: value })}
         />
-        <Select
+        {/* <Select
           className={classNames(styles["step__selects-item"])}
           list={meetList}
           active={form.meet}
           placeholder="Meet & Greet"
           setActive={(value) => updateForm({ meet: value })}
-        />
+        /> */}
       </div>
       <div className={styles.step__actions}>
         {/* Back Button */}
