@@ -13,7 +13,8 @@ const CarRender = ({ car, className, onClick, active = false }: CarProps) => {
         <p>
           {car.name} <b>{car.travel_time}</b>
         </p>
-        <span>{`${car.seats} seats / ${car.text}`}</span>
+        {/* <span>{`${car.seats} seats / ${car.text}`}</span> */}
+        <span>{`${car.seats} seats / ${car.seats} Luggages`}</span>
       </div>
       <div className={styles.car__price}>{`$${
         car.price ? (+car.price).toFixed(2) : "N/A"

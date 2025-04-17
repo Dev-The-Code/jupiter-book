@@ -6,10 +6,19 @@ export const cars: Car[] = [
     img: sedan,
     name: "Sedan",
     travel_time: "10 mins",
-    seats: 4,
+    seats: 3,
     text: "Affordable - Expires soon",
     price: "",
     cartype: "eco_sd",
+  },
+  {
+    img: suv,
+    name: "SUV",
+    travel_time: "37 mins",
+    seats: 5,
+    text: "More space",
+    price: "",
+    cartype: "eco_suv",
   },
   {
     img: minivan,
@@ -19,15 +28,6 @@ export const cars: Car[] = [
     text: "Comfort - Expires soon",
     price: "",
     cartype: "eco_mv",
-  },
-  {
-    img: suv,
-    name: "SUV",
-    travel_time: "37 mins",
-    seats: 7,
-    text: "More space",
-    price: "",
-    cartype: "eco_suv",
   },
 ];
 
