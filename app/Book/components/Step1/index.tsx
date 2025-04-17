@@ -26,10 +26,12 @@ const Step1 = ({
           color="ghost"
           onClick={() => {
             updateForm({
-              isNow: false,
+              isNow: true,
+              date: undefined,
+              hour: undefined,
+              minute: undefined,
+              dayTime: undefined,
             });
-            const btn = document.getElementById("calendar-btn");
-            btn?.click();
           }}
         >
           Now
@@ -39,12 +41,10 @@ const Step1 = ({
           color="ghost"
           onClick={() => {
             updateForm({
-              isNow: true,
-              date: undefined,
-              hour: undefined,
-              minute: undefined,
-              dayTime: undefined,
+              isNow: false,
             });
+            const btn = document.getElementById("calendar-btn");
+            btn?.click();
           }}
         >
           Later
