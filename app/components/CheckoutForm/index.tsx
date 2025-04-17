@@ -206,7 +206,7 @@ const CheckoutForm = ({
           loading={loading}
           type="submit"
         >
-          CONFIRM
+          Next
         </Button>
       </div>
     </form>

@@ -91,7 +91,7 @@ const Step2 = ({
             !form.meet
           }
         >
-          CONFIRM
+          Next
         </Button>
       </div>
     </div>

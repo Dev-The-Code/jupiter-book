@@ -57,7 +57,7 @@ const Step1 = ({
         loading={loading}
         onClick={() => onSubmit()}
       >
-        CONFIRM
+        Next
       </Button>
     </div>
   );
