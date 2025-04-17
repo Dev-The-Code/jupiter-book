@@ -3,6 +3,7 @@
 import { useController, type UseControllerProps } from "react-hook-form";
 import Input from ".";
 import { InputProps } from "./input.types";
+import { JSX } from "react";
 
 const InputForm = ({
   control,
