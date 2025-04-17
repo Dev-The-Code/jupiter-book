@@ -55,18 +55,19 @@ const DateTimePicker = ({
     setFormData((prev) => ({ ...prev, ...newData }));
   };
 
-  // function handleTimeChange(newDate: Date) {
-  //   const [hour, dayTime] = newDate
-  //     .toLocaleString("en-US", { hour: "numeric", hour12: true })
-  //     .split(" ");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function handleTimeChange(newDate: Date) {
+    const [hour, dayTime] = newDate
+      .toLocaleString("en-US", { hour: "numeric", hour12: true })
+      .split(" ");
 
-  //   handleChange({
-  //     date: newDate,
-  //     hour,
-  //     minute: newDate.getMinutes(),
-  //     dayTime: dayTime as DateTimeValue["dayTime"],
-  //   });
-  // }
+    handleChange({
+      date: newDate,
+      hour,
+      minute: newDate.getMinutes(),
+      dayTime: dayTime as DateTimeValue["dayTime"],
+    });
+  }
 
   return (
     <div className={classNames(styles.picker, className)} ref={ref}>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import styles from "./styles.module.scss";
 import { CarProps } from "./car.types";
@@ -9,7 +10,16 @@ const CarRender = ({ car, className, onClick, active = false }: CarProps) => {
       className={classNames(styles.car, active && styles.active, className)}
       onClick={onClick}
     >
-      <img alt={car.name} src={car.img.src} />
+      {/* <img alt={car.name} src={car.img.src} /> */}
+      <div style={{ height: "36px", width: "fit-content" }}>
+        <Image
+          alt={car.name}
+          src={car.img.src}
+          height={36} // Matches the height defined in the CSS for smaller screens
+          width={36} // Adjust width to maintain aspect ratio
+          objectFit="contain" // Ensures the image scales properly
+        />
+      </div>
       <div className={styles.car__content}>
         <p>
           {car.name} <b>{car.travel_time}</b>

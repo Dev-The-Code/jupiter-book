@@ -1,4 +1,4 @@
-import { Form } from "@/app/modules/Home/Book";
+import { Form } from "@/app/Book";
 import { Dispatch, SetStateAction } from "react";
 
 export interface CheckoutFormProps {
@@ -6,5 +6,5 @@ export interface CheckoutFormProps {
   getProfile: (values: Partial<Form>) => void;
   loading?: boolean;
   setLoading?: Dispatch<SetStateAction<boolean>>;
-  onBack?:(paymentId?: string) => void;
+  onBack?: (paymentId?: string) => void;
 }
