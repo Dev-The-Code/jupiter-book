@@ -238,7 +238,7 @@ const Book = () => {
       params.append("jtype_car", "2");
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      params.append("jpass", form.pass_number ?? "1");
+      params.append("jpass", form.pass_number?.label ?? "1");
       params.append("jpets", "0");
       params.append("jcseats", "0");
       params.append("jstop", "0");
