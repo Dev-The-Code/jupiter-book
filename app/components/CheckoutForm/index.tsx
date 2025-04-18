@@ -11,6 +11,7 @@ import { SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import Input from "../Input";
+import { VisaSvg } from "@/app/assets/svg";
 
 import { stripe as stripeImg } from "@/app/assets/images";
 
@@ -132,18 +133,18 @@ const CheckoutForm = ({
         }}
       />
       <div className={styles.step__row}>
-        <Input
-          className={classNames(
-            styles["step__inputs-item"],
-            styles["step__inputs-card"]
-          )}
-          placeholder="Credit Card"
-          value={card}
-          onValueChange={setCard}
-        />
+        <div className={classNames(styles["step__inputs-card"])}>
+          <Input
+            className={classNames(styles["step__inputs-item"])}
+            placeholder="1234 1234 1234 1234"
+            value={card}
+            onValueChange={setCard}
+          />
+          <VisaSvg />
+        </div>
         <Input
           className={classNames(styles["step__inputs-item"])}
-          placeholder="MMYY"
+          placeholder="MM/YY"
           value={mmyy}
           onValueChange={setMmyy}
         />
@@ -153,14 +154,14 @@ const CheckoutForm = ({
           value={cvc}
           onValueChange={setCvc}
         />
+      </div>
+      <div className={styles.step__row}>
         <Input
-          className={classNames(
-            styles["step__inputs-item"],
-            styles["step__inputs-zip"]
-          )}
-          placeholder="Zipcode"
+          className={classNames(styles["step__inputs-item"])}
+          placeholder="12345"
           value={zip}
           onValueChange={setZip}
+          type="number"
         />
       </div>
       <div className={styles.step__row}>
@@ -189,7 +190,7 @@ const CheckoutForm = ({
           error={email && !emailError ? "Invalid email" : ""}
         />
         <div className={styles.step__stripe}>
-          <img alt="stripe" src={stripeImg.src} />
+          {/* <img alt="stripe" src={stripeImg.src} /> */}
         </div>
       </div>
       <div className={styles.step__actions}>

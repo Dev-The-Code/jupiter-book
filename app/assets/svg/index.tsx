@@ -8,3 +8,4 @@ export { default as MarkerSvg } from "./MarkerSvg";
 export { default as ClockSvg } from "./ClockSvg";
 export { default as SwitchSvg } from "./SwitchSvg";
 export { default as ArrowSvg } from "./ArrowSvg";
+export { default as VisaSvg } from "./VisaSvg";

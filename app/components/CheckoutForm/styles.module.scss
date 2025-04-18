@@ -35,10 +35,8 @@
       }
     }
     &-card {
-      flex-grow: 3.27;
-    }
-    &-zip {
-      flex-grow: 1.21;
+      flex-grow: 2;
+      position: relative;
     }
   }
   &__actions {
