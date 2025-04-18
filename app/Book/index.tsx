@@ -55,13 +55,21 @@ const initValues = {
   pet: { label: "" },
   carseat: { label: "" },
   meet: { label: "" },
+  // from: {
+  //   description: "1 Elizabeth Street, New York, NY, USA",
+  //   place_id: "ChIJmX62ACdawokR02NfgvQNL10",
+  // },
+  // to: {
+  //   description: "150 Elizabeth Street, New York, NY, USA",
+  //   place_id: "ChIJY5PfgohZwokRVh_MGOK-Oqo",
+  // },
   from: {
-    description: "1 Elizabeth Street, New York, NY, USA",
-    place_id: "ChIJmX62ACdawokR02NfgvQNL10",
+    description: "",
+    place_id: "",
   },
   to: {
-    description: "150 Elizabeth Street, New York, NY, USA",
-    place_id: "ChIJY5PfgohZwokRVh_MGOK-Oqo",
+    description: "",
+    place_id: "",
   },
   date: reservationDate.toDate(),
   hour: reservationDate.format("hh"),
