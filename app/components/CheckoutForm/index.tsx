@@ -1,8 +1,4 @@
-import {
-  useStripe,
-  useElements,
-  PaymentElement,
-} from "@stripe/react-stripe-js";
+import { useElements, PaymentElement } from "@stripe/react-stripe-js";
 import Button from "../Button";
 
 import { CheckoutFormProps } from "./form.types";
@@ -27,8 +23,6 @@ const validateEmail = (email: string): boolean => {
 
 const CheckoutForm = ({
   onSuccess,
-  getProfile,
-  setLoading = () => {},
   loading,
   onBack = () => {},
 }: CheckoutFormProps) => {
@@ -39,7 +33,7 @@ const CheckoutForm = ({
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-  const stripe = useStripe();
+  // const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (
@@ -47,35 +41,37 @@ const CheckoutForm = ({
   ) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
-      return;
-    }
-    setLoading(true);
+    // if (!stripe || !elements) {
+    //   return;
+    // }
+    // setLoading(true);
 
-    await getProfile({ name, email, phone });
+    // await getProfile({ name, email, phone });
 
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        payment_method_data: {
-          billing_details: {
-            address: {
-              country: null,
-            },
-          },
-        },
-        return_url: "https://example.com/order/123/complete",
-      },
-      redirect: "if_required",
-    });
+    // const result = await stripe.confirmPayment({
+    //   elements,
+    //   confirmParams: {
+    //     payment_method_data: {
+    //       billing_details: {
+    //         address: {
+    //           country: null,
+    //         },
+    //       },
+    //     },
+    //     return_url: "https://example.com/order/123/complete",
+    //   },
+    //   redirect: "if_required",
+    // });
 
-    if (result.error) {
-      console.log(result.error.message);
-    } else {
-      const id = result.paymentIntent.id;
-      onSuccess(id);
-    }
-    setLoading(false);
+    // if (result.error) {
+    //   console.log(result.error.message);
+    // } else {
+    //   const id = result.paymentIntent.id;
+    // onSuccess(id);
+    // }
+    // setLoading(false);
+
+    onSuccess("123456789");
   };
 
   elements?.update({
@@ -200,7 +196,7 @@ const CheckoutForm = ({
           <div className={classNames(styles.step__backButton)}>←</div>
         </button>
         <Button
-          disabled={!stripe || !phoneError || name.length < 5 || !emailError}
+          disabled={!phoneError || name.length < 5 || !emailError}
           className={styles.form__btn}
           loading={loading}
           type="submit"

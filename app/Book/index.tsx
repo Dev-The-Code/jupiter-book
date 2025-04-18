@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./styles.module.scss";
-import { Map, Step1, Step2, Step3 } from "./components";
+import { Map, Step1, Step2, Step3, Step4 } from "./components";
 import { MapProvider } from "@/app/providers/map-provider";
 import { CarQuote, CarType } from "@/app/interfaces/car";
 import { axiosInstance } from "@/app/utils";
@@ -45,6 +45,9 @@ const steps = [
   },
   {
     component: Step3,
+  },
+  {
+    component: Step4,
   },
 ];
 
@@ -160,149 +163,59 @@ const Book = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const login = async (): Promise<boolean> => {
-    try {
-      setLoading(true);
+  // const login = async (): Promise<boolean> => {
+  //   try {
+  //     setLoading(true);
 
-      const params = new URLSearchParams();
-      params.append("email", "webcustomer@internal");
-      params.append("password", "P$Dinternal");
+  //     const params = new URLSearchParams();
+  //     params.append("email", "webcustomer@internal");
+  //     params.append("password", "P$Dinternal");
 
-      const resp = await axiosInstance.post(
-        `https://westrideapp.com/login`,
-        params
-      );
+  //     const resp = await axiosInstance.post(
+  //       `https://westrideapp.com/login`,
+  //       params
+  //     );
 
-      console.log("logged in", resp);
-      setLoading(false);
-      return true;
-    } catch (e) {
-      toast.error("Something went wrong (l)");
-      setLoading(false);
-      console.log(`[getQuote] err:`, e);
-      return false;
-    }
-  };
+  //     console.log("logged in", resp);
+  //     setLoading(false);
+  //     return true;
+  //   } catch (e) {
+  //     toast.error("Something went wrong (l)");
+  //     setLoading(false);
+  //     console.log(`[getQuote] err:`, e);
+  //     return false;
+  //   }
+  // };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const createOrder = async (paymentId: string) => {
     try {
-      const isLoggedIn = await login();
-      if (!isLoggedIn) {
-        console.log("cant login");
-        return;
-      }
-
       setLoading(true);
-
       const params = new URLSearchParams();
+      console.log("params:", params);
 
-      // Read stripe form value placeholder="Phone Number"
-      const phoneNumberInput = document.querySelector(
-        'input[placeholder="Phone Number"]'
-      ) as HTMLInputElement;
-      const phoneNumber = phoneNumberInput ? phoneNumberInput.value : "";
-
-      const now = new Date();
-      const formattedDate = `${String(now.getMonth() + 1).padStart(
-        2,
-        "0"
-      )}/${String(now.getDate()).padStart(2, "0")}/${now.getFullYear()}`;
-
-      const hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const seconds = String(now.getSeconds()).padStart(2, "0");
-      const ampm = hours >= 12 ? "PM" : "AM";
-      const formattedTime = `${String(hours % 12 || 12).padStart(
-        2,
-        "0"
-      )}:${minutes}:${seconds} ${ampm}`;
-
-      params.append("jdate", formattedDate);
-      params.append("jtime", formattedTime);
-
-      /*params.append('jdate', '01/11/2025');
-      params.append('jtime', '06:42:16 PM');*/
-      params.append("jline", "00");
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      params.append("jtelephone", phoneNumber ?? "");
-      params.append("jper", "0");
-      params.append("jdate_reser", "01/11/2025");
-      params.append("jdate_reser_aux", "2025-01-11 06:00:00");
-      params.append("jhour_reser", "06");
-      params.append("jmin_reser", "00");
-      params.append("jampm_reser", "AM");
-      params.append("jpopup_reser", "0");
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      params.append("jpickup", form.from?.description ?? "");
-      params.append("jcity_pickup", "0");
-      params.append("jstate_pickup", "0");
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      params.append("jdropoff", form.to?.description ?? "");
-      params.append("jcity_dropoff", "0");
-      params.append("jstate_dropoff", "0");
-      params.append("jtype_car", "2");
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      params.append("jpass", form.pass_number?.label ?? "1");
-      params.append("jpets", "0");
-      params.append("jcseats", "0");
-      params.append("jstop", "0");
-      params.append("jfare", "0");
-      params.append("jjob_status", "1");
-      params.append("jjob_status_aux", "0");
-      params.append("jobservations", "0");
-      params.append("joperator", "0");
-      params.append("jdispatcher", "0");
-      params.append("jdate_dt", "0");
-      params.append("jdate_dt_aux", "0");
-      params.append("jhour_dt", "01");
-      params.append("jmin_dt", "00");
-      params.append("jsec_dt", "00");
-      params.append("jampm_dt", "AM");
-      params.append("jcar", "0");
-      params.append("jcar_id", "0");
-      params.append("jcar_type", "0");
-      params.append("jcar_service", "0");
-      params.append("jeta", "0");
-      params.append("jmotive", "0");
-      params.append("jacc", "0");
-      params.append("jacc_name", "0");
-      params.append("jpassname", "test");
-      params.append("jflight", "0");
-      params.append("jluggage", "0");
-      params.append("jnamecard", "0");
-      params.append("jccnumber", "0");
-      params.append("jexpdate", "0");
-      params.append("jexpdate_aux", "0");
-      params.append("jccv", "0");
-      params.append("jzip", "0");
-      params.append("number_tmp", "0");
-      params.append("jid_job", "0");
-      params.append("jid_credit_card", "0");
-      params.append("jcall_time", "2025-01-11 18:42:16");
-      params.append("jclient", "0");
-      params.append("jper_id", "0");
-      params.append("jrvt", "on");
-
-      const resp = await axiosInstance.post(
-        "https://westrideapp.com/job_save",
-        params
-      );
+      // const resp = await axiosInstance.post(
+      //   "https://westrideapp.com/job_save",
+      //   params
+      // );
 
       toast.success("Sending booking to dispatcher.... Created.");
-      console.log("resp:", resp);
-      setForm(initValues);
-      setStep(0);
-      setQuote("");
+      // setForm(initValues);
+      // setStep(0);
+      // setQuote("");
       setLoading(false);
     } catch (e) {
       toast.error("Something went wrong");
       setLoading(false);
       console.log(`[getQuote] err:`, e);
     }
+  };
+
+  const confirmReservation = () => {
+    console.log("confirmReservation");
+    setForm(initValues);
+    setStep(0);
+    setQuote("");
   };
 
   const nextStep = async (paymentId?: string) => {
@@ -315,8 +228,13 @@ const Book = () => {
     }
     if (step === 2) {
       await createOrder(paymentId ?? "");
+      // return;
+    }
+    if (step === 3) {
+      confirmReservation();
       return;
     }
+
     setStep((prev) => {
       const newStep = prev + 1;
       if (!steps[newStep]) {
