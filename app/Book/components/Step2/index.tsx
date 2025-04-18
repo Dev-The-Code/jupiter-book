@@ -70,13 +70,6 @@ const Step2 = ({
           placeholder="Carseat"
           setActive={(value) => updateForm({ carseat: value })}
         />
-        {/* <Select
-          className={classNames(styles["step__selects-item"])}
-          list={meetList}
-          active={form.meet}
-          placeholder="Meet & Greet"
-          setActive={(value) => updateForm({ meet: value })}
-        /> */}
       </div>
       <div className={styles.step__actions}>
         {/* Back Button */}
