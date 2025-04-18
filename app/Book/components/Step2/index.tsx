@@ -25,7 +25,7 @@ const Step2 = ({
     <div className={styles.step}>
       <RoadInput form={form} disabled animate />
       <div className={classNames(styles.step__title, "showOn")}>
-        Choose a car with 2 oo
+        Choose a car
       </div>
       <div className={classNames(styles.step__cars, "showOn")}>
         {cars.map((el) => (
