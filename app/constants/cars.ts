@@ -47,10 +47,9 @@ export const petList = [
   },
 ];
 export const carseatList = [
-  { label: "No Seat", value: "0" },
-  { label: "Infant(+$10)", value: "1I" },
-  { label: "Toddler(+$10)", value: "1T" },
-  { label: "Booster(+$10)", value: "1B" },
+  { label: "Booster seat", value: "1I" },
+  { label: "Rear facing", value: "1T" },
+  { label: "Front facing", value: "1B" },
 ];
 export const meetList = [
   { label: "1", value: "1" },
