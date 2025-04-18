@@ -29,8 +29,8 @@ export default function RootLayout({
       >
         <img
           src={"/JupiterFinalLogo.png"}
-          width={276}
-          height={195}
+          width={190}
+          height={135}
           alt="Logo"
           className="logo-img"
         />
