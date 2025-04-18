@@ -13,8 +13,6 @@ import classNames from "classnames";
 import Input from "../Input";
 import { VisaSvg } from "@/app/assets/svg";
 
-import { stripe as stripeImg } from "@/app/assets/images";
-
 const validatePhone = (phone: string): boolean => {
   const phonePattern = /^\d{6,15}$/;
   const isValidPhone = phonePattern.test(phone);
