@@ -163,33 +163,39 @@ const Book = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const login = async (): Promise<boolean> => {
-  //   try {
-  //     setLoading(true);
+  const login = async (): Promise<boolean> => {
+    try {
+      setLoading(true);
 
-  //     const params = new URLSearchParams();
-  //     params.append("email", "webcustomer@internal");
-  //     params.append("password", "P$Dinternal");
+      const params = new URLSearchParams();
+      params.append("email", "webcustomer@internal");
+      params.append("password", "P$Dinternal");
 
-  //     const resp = await axiosInstance.post(
-  //       `https://westrideapp.com/login`,
-  //       params
-  //     );
+      const resp = await axiosInstance.post(
+        `https://westrideapp.com/login`,
+        params
+      );
 
-  //     console.log("logged in", resp);
-  //     setLoading(false);
-  //     return true;
-  //   } catch (e) {
-  //     toast.error("Something went wrong (l)");
-  //     setLoading(false);
-  //     console.log(`[getQuote] err:`, e);
-  //     return false;
-  //   }
-  // };
+      console.log("logged in", resp);
+      setLoading(false);
+      return true;
+    } catch (e) {
+      toast.error("Something went wrong (l)");
+      setLoading(false);
+      console.log(`[getQuote] err:`, e);
+      return false;
+    }
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const createOrder = async (paymentId: string) => {
     try {
+      const isLoggedIn = await login();
+      if (!isLoggedIn) {
+        console.log('cant login');
+        return;
+      }
+      
       setLoading(true);
       const params = new URLSearchParams();
       console.log("params:", params);
