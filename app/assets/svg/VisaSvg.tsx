@@ -3,7 +3,7 @@ import React, { SVGProps } from "react";
 const VisaSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      enable-background="new 0 0 750 471"
+      enableBackground="new 0 0 750 471"
       height="471"
       viewBox="0 0 750 471"
       width="750"

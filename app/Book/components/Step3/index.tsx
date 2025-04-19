@@ -40,7 +40,6 @@ const Step3 = ({
     //   : undefined;
     const sk = STRIPE_PUBLISHABLE_KEY;
     const pk = STRIPE_CLIENT_SECRET;
-    console.log({ sk, pk });
 
     setPublicKey(pk);
     setSecretKey(sk);

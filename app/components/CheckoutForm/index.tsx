@@ -71,7 +71,13 @@ const CheckoutForm = ({
     // }
     // setLoading(false);
 
-    onSuccess("123456789");
+    const formdata = {
+      Name: name,
+      Email: email,
+      "Phone number": phone,
+    };
+
+    onSuccess(JSON.stringify(formdata));
   };
 
   elements?.update({

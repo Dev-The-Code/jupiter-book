@@ -162,58 +162,123 @@ const Book = () => {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const login = async (): Promise<boolean> => {
+  // // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const login = async (): Promise<boolean> => {
+  //   try {
+  //     setLoading(true);
+
+  //     const params = new URLSearchParams();
+  //     params.append("email", "webcustomer@internal");
+  //     params.append("password", "P$Dinternal");
+
+  //     const resp = await axiosInstance.post(
+  //       `https://westrideapp.com/login`,
+  //       params
+  //     );
+
+  //     console.log("logged in", resp);
+  //     setLoading(false);
+  //     return true;
+  //   } catch (e) {
+  //     toast.error("Something went wrong (l)");
+  //     setLoading(false);
+  //     console.log(`[getQuote] err:`, e);
+  //     return false;
+  //   }
+  // };
+
+  // // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const createOrder = async (paymentId: string) => {
+  //   try {
+  //     const isLoggedIn = await login();
+  //     if (!isLoggedIn) {
+  //       console.log('cant login');
+  //       return;
+  //     }
+
+  //     setLoading(true);
+  //     const params = new URLSearchParams();
+  //     console.log("params:", params);
+
+  //     // const resp = await axiosInstance.post(
+  //     //   "https://westrideapp.com/job_save",
+  //     //   params
+  //     // );
+
+  //     toast.success("Sending booking to dispatcher.... Created.");
+  //     // setForm(initValues);
+  //     // setStep(0);
+  //     // setQuote("");
+  //     setLoading(false);
+  //   } catch (e) {
+  //     toast.error("Something went wrong");
+  //     setLoading(false);
+  //     console.log(`[getQuote] err:`, e);
+  //   }
+  // };
+
+  const sendEmail = async (data?: string) => {
     try {
-      setLoading(true);
+      if (!data) {
+        throw new Error("No data provided for email.");
+      }
 
-      const params = new URLSearchParams();
-      params.append("email", "webcustomer@internal");
-      params.append("password", "P$Dinternal");
+      const jsonData = JSON.parse(data);
+      const { name, email, phone } = jsonData;
 
-      const resp = await axiosInstance.post(
-        `https://westrideapp.com/login`,
-        params
+      // Format date and time using moment.js
+      const formattedDate = form.date
+        ? moment(form.date).format("YYYY-MM-DD")
+        : "N/A";
+      const formattedTime = form.date
+        ? moment(form.date).format("hh:mm A")
+        : "N/A";
+
+      const response = await axiosInstance.post(
+        `includes/ajax/_booking_quote2.php`,
+        {
+          method: "send_email", // Specify the method for sending email
+          to: "jupiterwebsitereservations@gmail.com",
+          subject: "Reservation Confirmation",
+          body: `
+            <div style="text-align: center; font-family: Arial, sans-serif;">
+              <img src="https://via.placeholder.com/150" alt="Logo" style="margin-bottom: 20px;" />
+              <h1>Booking Confirmation</h1>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Last Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone number:</strong> ${phone}</p>
+              <br />
+              <p><strong>Pick up location:</strong> ${form.from?.description}</p>
+              <p><strong>Drop off location:</strong> ${form.to?.description}</p>
+              <p><strong>Date:</strong> ${formattedDate}</p>
+              <p><strong>Time:</strong> ${formattedTime}</p>
+              <br />
+              <p><strong>Pass:</strong> ${form.pass_number?.label}</p>
+              <p><strong>Luggage:</strong> ${form.meet?.label}</p>
+              <br />
+              <p><strong>Car seats:</strong> ${form.carseat?.label}</p>
+              <p><strong>Pets:</strong> ${form.pet?.label}</p>
+              <br />
+              <p>Thank you for choosing Jupiter. If you need any help, please don't hesitate to contact us. 718-499-2222</p>
+            </div>
+          `,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
-      console.log("logged in", resp);
-      setLoading(false);
-      return true;
-    } catch (e) {
-      toast.error("Something went wrong (l)");
-      setLoading(false);
-      console.log(`[getQuote] err:`, e);
-      return false;
-    }
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const createOrder = async (paymentId: string) => {
-    try {
-      const isLoggedIn = await login();
-      if (!isLoggedIn) {
-        console.log('cant login');
-        return;
+      if (response.status === 200) {
+        toast.success("Email sent successfully!");
+      } else {
+        toast.error("Failed to send email.");
       }
-      
-      setLoading(true);
-      const params = new URLSearchParams();
-      console.log("params:", params);
-
-      // const resp = await axiosInstance.post(
-      //   "https://westrideapp.com/job_save",
-      //   params
-      // );
-
-      toast.success("Sending booking to dispatcher.... Created.");
-      // setForm(initValues);
-      // setStep(0);
-      // setQuote("");
-      setLoading(false);
-    } catch (e) {
-      toast.error("Something went wrong");
-      setLoading(false);
-      console.log(`[getQuote] err:`, e);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast.error("An error occurred while sending the email.");
     }
   };
 
@@ -224,7 +289,7 @@ const Book = () => {
     setQuote("");
   };
 
-  const nextStep = async (paymentId?: string) => {
+  const nextStep = async (data?: string) => {
     if (step === 0) {
       await validateBookings();
     }
@@ -233,8 +298,8 @@ const Book = () => {
       await getQuote();
     }
     if (step === 2) {
-      await createOrder(paymentId ?? "");
-      // return;
+      // await createOrder(paymentId ?? "");
+      await sendEmail(data);
     }
     if (step === 3) {
       confirmReservation();
