@@ -17,5 +17,5 @@ export default function Home() {
   useEffect(() => {
     getSessionId();
   }, []);
-  return <CookiesProvider><Book /></CookiesProvider>;
+  return <Book />;
 }

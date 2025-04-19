@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 import { useDebounce } from "@/app/hooks";
 import classNames from "classnames";
 import { axiosInstance } from "@/app/utils";
+import axios from "axios";
 
 const AutocompleteInput = ({
   value,
@@ -42,10 +43,10 @@ const AutocompleteInput = ({
     try {
       setLoading(true);
       setEmptyError(false);
-      const resp = await axiosInstance.post("includes/ajax/_booking2.php", {
-        method: "get_address",
-        params: { type: "address", search },
-      });
+      const resp = await axios.post("/api/fetch-address", {
+        searchData: search,
+      }, 
+    );
       if (resp.data?.results) {
         setResults(Object.values(resp.data.results));
       } else {

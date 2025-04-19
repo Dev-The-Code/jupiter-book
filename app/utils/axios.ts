@@ -16,7 +16,6 @@ axiosInstance.interceptors.request.use(
   function (config: InternalAxiosRequestConfig) {
     // config.headers.Authorization = `Bearer ${token}`;
 
-    config.headers["Cookie"] = document.cookie;
     return config;
   },
   async function (error) {
