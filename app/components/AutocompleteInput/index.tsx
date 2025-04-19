@@ -5,7 +5,6 @@ import { InputProps } from "./input.types";
 import styles from "./styles.module.scss";
 import { useDebounce } from "@/app/hooks";
 import classNames from "classnames";
-import { axiosInstance } from "@/app/utils";
 import axios from "axios";
 
 const AutocompleteInput = ({

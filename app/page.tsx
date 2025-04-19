@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import Book from "./Book";
 import { axiosInstance } from "./utils";
-import { CookiesProvider } from "react-cookie";
 
 export default function Home() {
   const getSessionId = async () => {
